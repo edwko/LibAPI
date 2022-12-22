@@ -159,6 +159,105 @@ namespace LIBAPI
             return getRequest(create_UR, U("/time"), http_client_BYBIT);
         }
 
-    };
+    }
+
+    namespace BITMEX
+    {
+
+        web::json::value ORDER_BOOK(const utility::string_t& SYMBOL_NAME, int LIMIT)
+        {
+            std::vector<std::pair<utility::string_t, utility::string_t>> create_UR;
+            create_UR.push_back(std::make_pair(U("symbol"), SYMBOL_NAME));
+            LIMIT = LIMIT < 1 ? 1 : LIMIT > 200 ? 200 : LIMIT;
+            create_UR.push_back(std::make_pair(U("depth"), 
+                utility::conversions::to_string_t(std::to_string(LIMIT))));
+
+            return getRequest(create_UR, U("/orderBook/L2"), http_client_BITMEX);
+        }
+
+        web::json::value QUOTE(const utility::string_t& SYMBOL_NAME, int LIMIT)
+        {
+            std::vector<std::pair<utility::string_t, utility::string_t>> create_UR;
+            create_UR.push_back(std::make_pair(U("symbol"), SYMBOL_NAME));
+            LIMIT = LIMIT < 1 ? 1 : LIMIT > 200 ? 200 : LIMIT;
+            create_UR.push_back(std::make_pair(U("depth"), 
+                utility::conversions::to_string_t(std::to_string(LIMIT))));
+
+            return getRequest(create_UR, U("/quote"), http_client_BITMEX);
+        }
+
+        web::json::value QUOTE_BUCKET(
+            const utility::string_t& SYMBOL_NAME, 
+            const utility::string_t& TIMEFRAME, int LIMIT)
+        {
+            std::vector<std::pair<utility::string_t, utility::string_t>> create_UR;
+            create_UR.push_back(std::make_pair(U("symbol"), SYMBOL_NAME));
+            create_UR.push_back(std::make_pair(U("binSize"), TIMEFRAME));   // 1m, 5m, 1h, 1d
+            LIMIT = LIMIT < 1 ? 1 : LIMIT > 200 ? 200 : LIMIT;
+            create_UR.push_back(std::make_pair(U("depth"), 
+                utility::conversions::to_string_t(std::to_string(LIMIT))));
+
+            return getRequest(create_UR, U("/quote/bucketed"), http_client_BITMEX);
+        }
+
+        web::json::value STATS()
+        {
+            std::vector<std::pair<utility::string_t, utility::string_t>> create_UR;
+
+            return getRequest(create_UR, U("/stats"), http_client_BITMEX);
+        }
+
+        web::json::value STATS_HISTORY()
+        {
+            std::vector<std::pair<utility::string_t, utility::string_t>> create_UR;
+
+            return getRequest(create_UR, U("/stats/history"), http_client_BITMEX);
+        }
+
+        web::json::value STATS_HISTORY_USD()
+        {
+            std::vector<std::pair<utility::string_t, utility::string_t>> create_UR;
+
+            return getRequest(create_UR, U("/stats/historyUSD"), http_client_BITMEX);
+        }
+
+        web::json::value SETTLEMENT(const utility::string_t& SYMBOL_NAME, int LIMIT)
+        {
+            std::vector<std::pair<utility::string_t, utility::string_t>> create_UR;
+            create_UR.push_back(std::make_pair(U("symbol"), SYMBOL_NAME));
+            LIMIT = LIMIT < 1 ? 1 : LIMIT > 200 ? 200 : LIMIT;
+            create_UR.push_back(std::make_pair(U("count"),
+                utility::conversions::to_string_t(std::to_string(LIMIT))));
+
+            return getRequest(create_UR, U("/settlement"), http_client_BITMEX);
+        }
+
+        web::json::value TRADES(const utility::string_t& SYMBOL_NAME, int LIMIT)
+        {
+            std::vector<std::pair<utility::string_t, utility::string_t>> create_UR;
+            create_UR.push_back(std::make_pair(U("symbol"), SYMBOL_NAME));
+            LIMIT = LIMIT < 1 ? 1 : LIMIT > 200 ? 200 : LIMIT;
+            create_UR.push_back(std::make_pair(U("count"),
+                utility::conversions::to_string_t(std::to_string(LIMIT))));
+
+            return getRequest(create_UR, U("/trade"), http_client_BITMEX);
+        }
+
+        web::json::value TRADES_BUCKET(
+            const utility::string_t& SYMBOL_NAME,
+            const utility::string_t& TIMEFRAME, int LIMIT
+        )
+        {
+            std::vector<std::pair<utility::string_t, utility::string_t>> create_UR;
+            create_UR.push_back(std::make_pair(U("symbol"), SYMBOL_NAME));
+            create_UR.push_back(std::make_pair(U("binSize"), TIMEFRAME));   // 1m, 5m, 1h, 1d
+            LIMIT = LIMIT < 1 ? 1 : LIMIT > 200 ? 200 : LIMIT;
+            create_UR.push_back(std::make_pair(U("count"),
+                utility::conversions::to_string_t(std::to_string(LIMIT))));
+
+            return getRequest(create_UR, U("/trade/bucketed"), http_client_BITMEX);
+        }
+
+    }
 
 }
