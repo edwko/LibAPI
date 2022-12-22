@@ -4,6 +4,7 @@ namespace LIBAPI
 {
 
     const utility::string_t http_client_BYBIT = U("https://api.bybit.com/v2/public");
+    const utility::string_t http_client_BITMEX = U("https://www.bitmex.com/api/v1");
 
     web::json::value getRequest(
         std::vector<std::pair<utility::string_t, utility::string_t>>& UR,
