@@ -246,8 +246,7 @@ namespace LIBAPI
 
         web::json::value TRADES_BUCKET(
             const utility::string_t& SYMBOL_NAME,
-            const utility::string_t& TIMEFRAME, int LIMIT
-        )
+            const utility::string_t& TIMEFRAME, int LIMIT)
         {
             std::vector<std::pair<utility::string_t, utility::string_t>> create_UR;
             create_UR.push_back(std::make_pair(U("symbol"), SYMBOL_NAME));
