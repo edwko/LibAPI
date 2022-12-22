@@ -47,6 +47,34 @@ namespace LIBAPI
 
 		web::json::value SERVER_TIME();
 
-	};
+	}
 
-};
+	namespace BITMEX
+	{
+
+		web::json::value ORDER_BOOK(const utility::string_t& SYMBOL_NAME, int LIMIT);
+
+		web::json::value QUOTE(const utility::string_t& SYMBOL_NAME, int LIMIT);
+
+		web::json::value QUOTE_BUCKET(
+			const utility::string_t& SYMBOL_NAME,
+			const utility::string_t& TIMEFRAME, int LIMIT);
+
+		web::json::value STATS();
+
+		web::json::value STATS_HISTORY();
+
+		web::json::value STATS_HISTORY_USD();
+
+		web::json::value SETTLEMENT(const utility::string_t& SYMBOL_NAME, int LIMIT);
+
+		web::json::value TRADES(const utility::string_t& SYMBOL_NAME, int LIMIT);
+
+		web::json::value TRADES_BUCKET(
+			const utility::string_t& SYMBOL_NAME,
+			const utility::string_t& TIMEFRAME, int LIMIT
+		);
+
+	}
+
+}
