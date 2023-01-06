@@ -31,3 +31,9 @@ int main()
 
 }
 ```
+
+### Dependencies:
+
+This library uses cpprestsdk to retrieve API data.
+
+You can find installation instructions for cpprestsdk in the GitHub repository: [Cpprestsdk Getting Started](https://github.com/microsoft/cpprestsdk#getting-started)
